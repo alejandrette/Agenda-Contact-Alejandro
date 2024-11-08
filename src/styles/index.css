@@ -1,3 +1,25 @@
-/* 
-    General Styles
-*/
+body{
+    background-color: #222 ;
+}
+
+.message-error{
+    background-color:  rgba(255, 0, 0, 0.140);
+    border: 1px solid #dc3545;
+    border-radius: 10px;
+    width: 200px;
+    color: #dc3545;
+    text-align: center;
+    line-height: 10vh;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.message-successful {
+    background-color: rgba(0, 128, 0, 0.1);
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    width: 200px;
+    color: #28a745;
+    text-align: center;
+    line-height: 10vh;
+}
