@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { Phone, Mail, MapPinHouse, Pencil, BadgeX } from 'lucide-react';
 
-export const Single = () => {
+export const Agenda = () => {
 	const params = useParams();
 	const [ nameAgenda, setNameAgenda ] = useState(params.nameAgenda);
 	const [ agendaConcat, setAgendaConcat ] = useState([]);
@@ -27,7 +27,7 @@ export const Single = () => {
 	useEffect(() => getAgendaConcat(), []);
 	
 	return (
-		<div className="single-container">
+		<div className="agenda-container">
 			<h1 className="text-light text-center">Agenda of {nameAgenda}</h1>
 			{agendaConcat.length > 0 ? (
                 agendaConcat.map((agenda, index) => (

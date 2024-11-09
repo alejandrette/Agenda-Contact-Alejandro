@@ -26,7 +26,7 @@ body{
     margin-top: 10px;
 }
 
-.single-container {
+.agenda-container {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,0 +1,29 @@
+.error-page {
+    min-height: 80vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.25rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.gif-container {
+    width: 300px !important;
+    max-width: 100%;
+    height: auto;
+    overflow: hidden;
+}
