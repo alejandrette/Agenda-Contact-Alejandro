@@ -22,4 +22,21 @@ body{
     color: #28a745;
     text-align: center;
     line-height: 10vh;
+    margin: 0 auto;
+    margin-top: 10px;
 }
+
+.single-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-uniform {
+    width: 100%;
+    max-width: 500px;
+    height: 180px;
+    background-color: #1A1A1A;
+}
+

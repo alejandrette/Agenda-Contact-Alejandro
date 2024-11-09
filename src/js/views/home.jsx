@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { Card, Button, Container, Row, Col } from 'react-bootstrap';
 
-
 export const Home = () => {
 	const [ agendas, setAgendas ] = useState([]);
 
@@ -25,13 +24,13 @@ export const Home = () => {
 							<Card className="h-100 shadow-sm" style={{ borderRadius: '10px', background: '#1A1A1A' }}>
 								<Card.Body className="text-center">
 									<div className="mb-3">
-										<BookUser size={32} style={{ color: '#007bff' }} />
+										<BookUser style={{ color: '#007bff' }} />
 									</div>
 									<Card.Title className="mb-2" style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#fff' }}>
 										{agenda.slug}
 									</Card.Title>
 									<Button>
-										<Link to='/single/:theid' className="text-light" style={{textDecoration: 'none'}}>
+										<Link to={`/single/${agenda.slug}`} className="text-light" style={{textDecoration: 'none'}}>
 											See Contacts
 										</Link>
 									</Button>
