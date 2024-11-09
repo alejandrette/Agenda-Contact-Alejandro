@@ -15,8 +15,13 @@ export const Single = () => {
 			.then(data => setAgendaConcat(data.contacts))
 	};
 
-    const deleteContact = () => {
-
+    const deleteContact = async idContact => {
+        try {
+            await fetch(`https://playground.4geeks.com/contact/agendas/${nameAgenda}/contacts/${idContact}`, { method: "DELETE", redirect: "follow" });
+            getAgendaConcat();
+        } catch (error) {
+            console.error(error);
+        }        
     };
 
 	useEffect(() => getAgendaConcat(), []);
@@ -55,7 +60,7 @@ export const Single = () => {
                                 <Link to="" className="mb-2">
                                     <Pencil className="text-warning"/>
                                 </Link>
-                                <button className="btn btn-danger" onClick={deleteContact}>
+                                <button className="btn btn-danger" onClick={() => deleteContact(agenda.id)}>
                                     <BadgeX />
                                 </button>
                             </div>
