@@ -1,38 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/demo.css";
+import { Context } from "../store/appContext";
 
 export const CreateAgenda = () => {
   const [ nameAgenda, setNameAgenda ] = useState('');
-  const [ messageError, setMessageError ] = useState('');
-  const [ showError, setShowError ] = useState(false);
-  const [ messageSuccessful, setMessageSuccessful ] = useState('');
-  const [ showSuccessful, setShowSuccessful ] = useState(false);
-
-  const postNewAgenda = async () => {
-    try {
-      const response = await fetch(`https://playground.4geeks.com/contact/agendas/${nameAgenda}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ slug: `${nameAgenda}` }),
-        }
-      );
-
-      if (response.status === 400) {
-        setMessageError("The agenda already exists");
-        setShowError(true);
-        setTimeout(() => setShowError(false), 3000);
-      } else {
-        setMessageSuccessful("Agenda Created");
-        setShowSuccessful(true);
-        setTimeout(() => setShowSuccessful(false), 3000);
-      }
-
-      await response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const { store, actions } = useContext(Context);
 
   return (
     <div className="d-flex flex-column align-items-center mt-5 text-light">
@@ -43,18 +15,20 @@ export const CreateAgenda = () => {
             type="text"
             className="form-control"
             placeholder="Enter agenda name"
+            autoFocus
             value={nameAgenda}
             onChange={e => setNameAgenda(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' ? actions.postNewAgenda(nameAgenda) : null}
           />
         </div>
-        <button className="btn btn-primary w-100" onClick={postNewAgenda}>
+        <button className="btn btn-primary w-100" onClick={() => actions.postNewAgenda(nameAgenda)}>
           Create Agenda
         </button>
       </div>
 
       <div className="mt-3 text-center" style={{ width: '100%', maxWidth: '400px' }}>
-        {showError && <div className="message-error text-danger">{messageError}</div>}
-        {showSuccessful && <div className="message-successful">{messageSuccessful}</div>}
+        {store.showError && <div className="message-error text-danger">{store.messageError}</div>}
+        {store.showSuccessful && <div className="message-successful">{store.messageSuccessful}</div>}
       </div>
     </div>
   );
