@@ -6,6 +6,7 @@ import { Home } from "./views/home.jsx";
 import { CreateAgenda } from "./views/CreateAgenda.jsx";
 import { Agenda } from "./views/Agenda.jsx";
 import { CreateContact } from './views/CreateContact.jsx';
+import { EditContact } from "./views/EditContact.jsx";
 import { Error404 } from './views/Error404.jsx'
 import injectContext from "./store/appContext";
 
@@ -28,6 +29,7 @@ const Layout = () => {
 						<Route path="/CreateAgenda" element={<CreateAgenda />} />
 						<Route path="/Agenda/:nameAgenda" element={<Agenda />} />
 						<Route path="/Agenda/:nameAgenda/CreateContact/" element={<CreateContact />} />
+						<Route path="/Agenda/:nameAgenda/CreateContact/:id_contact" element={<EditContact />} />
 						<Route path="*" element={<Error404 />} />
 					</Routes>
 					<Footer />

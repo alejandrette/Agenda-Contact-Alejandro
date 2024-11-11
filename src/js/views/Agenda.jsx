@@ -60,7 +60,7 @@ export const Agenda = () => {
                             </div>
 
                             <div className="d-flex flex-column ms-auto text-center">
-                                <Link to='' className="mb-2">
+                                <Link to={`/Agenda/${nameAgenda}/CreateContact/${agenda.id}`} className="mb-2">
                                     <Pencil className="text-warning"/>
                                 </Link>
                                 <button className="btn btn-danger" onClick={() => deleteContact(agenda.id)}>
