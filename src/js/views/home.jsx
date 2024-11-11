@@ -11,7 +11,7 @@ export const Home = () => {
 		fetch('https://playground.4geeks.com/contact/agendas')
 			.then(resp => resp.json())
 			.then(data => setAgendas(data.agendas))
-	}
+	};
 
 	useEffect(() => getAllAgendas(), []);
 

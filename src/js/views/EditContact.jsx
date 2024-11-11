@@ -1,31 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { ArrowBigLeft } from 'lucide-react';
+import { Context } from "../store/appContext";
 
 export const EditContact = () => {
     const params = useParams();
-	const [ nameAgenda, setNameAgenda ] = useState(params.nameAgenda);
-	const [ idContact, setIdContact ] = useState(params.id_contact);
+	const [ nameAgenda ] = useState(params.nameAgenda);
+	const [ idContact ] = useState(params.id_contact);
+    const { store, actions } = useContext(Context);
 
     const [ name, setName ] = useState('');
     const [ phone, setPhone ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ address, setAddress ] = useState('');
-
-    const putContact = () => {
-        fetch(`https://playground.4geeks.com/contact/agendas/${nameAgenda}/contacts/${idContact}`, {
-            method: "PUT",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                "name": name,
-                "phone": phone,
-                "email": email,
-                "address": address
-              }),
-            redirect: "follow"
-        })
-    }
 
     return(
         <div className="mt-3">
@@ -42,7 +30,8 @@ export const EditContact = () => {
                         placeholder="Enter name"
                         name="name"
                         required
-                        onChange={(e) => setName(e.target.value)}
+                        autoFocus
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
 
@@ -54,7 +43,7 @@ export const EditContact = () => {
                         placeholder="Enter phone number"
                         name="phone"
                         required
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={e => setPhone(e.target.value)}
                     />
                 </div>
 
@@ -66,7 +55,7 @@ export const EditContact = () => {
                         placeholder="Enter email address"
                         name="email"
                         required
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -77,16 +66,19 @@ export const EditContact = () => {
                         className="form-control"
                         placeholder="Enter address"
                         name="address"
-                        onChange={(e) => setAddress(e.target.value)}
+                        required
+                        onChange={e => setAddress(e.target.value)}
                     />
                 </div>
 
                 <div className="text-center">
-                    <button type="submit" className="btn btn-primary" onClick={putContact}>
+                    <button className="btn btn-success" onClick={e => {actions.putContact(nameAgenda, idContact, name, phone, email, address); e.preventDefault()}}>
                         Edit Contact
                     </button>
                 </div>
             </form>
+            {store.showError && <div className="message-error text-danger">{store.messageError}</div>}
+            {store.showSuccessful && <div className="message-successful">{store.messageSuccessful}</div>}
         </div>
-    )
-}
+    );
+};

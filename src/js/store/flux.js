@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			messageError: '',
 			showError: false,
 			messageSuccessful: '',
-			showSuccessful: false
+			showSuccessful: false,
 		},
 		actions: {
 			postNewAgenda: async (nameAgenda) => {
@@ -55,6 +55,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				} catch (error){
 					console.error(error);
+				}
+			},
+
+			putContact: async (nameAgenda, idContact, name, phone, email, address) => {
+				try {
+					const response = await fetch(`https://playground.4geeks.com/contact/agendas/${nameAgenda}/contacts/${idContact}`, {
+						method: "PUT",
+						headers: {"Content-Type": "application/json"},
+						body: JSON.stringify({
+							"name": name,
+							"phone": phone,
+							"email": email,
+							"address": address
+						  }),
+						redirect: "follow"
+					});
+	
+					if(response.status === 200){
+						setStore({messageSuccessful: 'Contact Updated', showSuccessful: true});
+						setTimeout(() => setStore({showSuccessful: false}), 3000);
+					} else {
+						setStore({messageError: 'Failed to update', showError: true});
+						setTimeout(() => setStore({showError: false}), 3000);
+					}
+				} catch (error) {
+					console.error(error)
 				}
 			}
 		}
