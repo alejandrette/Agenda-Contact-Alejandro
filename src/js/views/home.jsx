@@ -30,7 +30,7 @@ export const Home = () => {
 										{agenda.slug}
 									</Card.Title>
 									<Button>
-										<Link to={`/agenda/${agenda.slug}`} className="text-light" style={{textDecoration: 'none'}}>
+										<Link to={`/Agenda/${agenda.slug}`} className="text-light" style={{textDecoration: 'none'}}>
 											See Contacts
 										</Link>
 									</Button>

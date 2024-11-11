@@ -28,7 +28,10 @@ export const Agenda = () => {
 	
 	return (
 		<div className="agenda-container">
-			<h1 className="text-light text-center">Agenda of {nameAgenda}</h1>
+            <Link to={`/Agenda/${nameAgenda}/CreateContact/`}>
+                <button className="btn btn-success btn-newContact">Create New Contact</button>
+            </Link>
+			<h1 className="text-light text-center mt-2" style={{ fontSize: "4rem" }}>Agenda of {nameAgenda}</h1>
 			{agendaConcat.length > 0 ? (
                 agendaConcat.map((agenda, index) => (
                     <Card key={index} className="mb-3 shadow-sm card-uniform" style={{ maxWidth: "500px", height: "150px", borderRadius: "10px" }}>
@@ -45,19 +48,19 @@ export const Agenda = () => {
                                 <h5 className="mb-1 text-light" style={{ fontSize: "1.25rem", fontWeight: "bold" }}>
                                     {agenda.name}
                                 </h5>
-                                <p className="mb-1 text-light">
+                                <p className="mb-1 text-light" style={{ fontSize: "1rem" }}>
                                     <Phone className="me-2" /> {agenda.phone}
                                 </p>
-                                <p className="mb-1 text-light">
+                                <p className="mb-1 text-light" style={{ fontSize: "1rem" }}>
                                     <Mail className="me-2" /> {agenda.email}
                                 </p>
-                                <p className="mb-1 text-light">
+                                <p className="mb-1 text-light" style={{ fontSize: "1rem" }}>
                                     <MapPinHouse className="me-2" /> {agenda.address}
                                 </p>
                             </div>
 
                             <div className="d-flex flex-column ms-auto text-center">
-                                <Link to="" className="mb-2">
+                                <Link to='' className="mb-2">
                                     <Pencil className="text-warning"/>
                                 </Link>
                                 <button className="btn btn-danger" onClick={() => deleteContact(agenda.id)}>
