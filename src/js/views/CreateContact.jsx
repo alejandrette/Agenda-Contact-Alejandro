@@ -1,34 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ArrowBigLeft } from 'lucide-react';
+import { Context } from "../store/appContext";
 
 export const CreateContact = () => {
     const params = useParams();
-	const [ nameAgenda, setNameAgenda ] = useState(params.nameAgenda);
+	const [ nameAgenda ] = useState(params.nameAgenda);
+    const { store, actions } = useContext(Context);
     const [ name, setName ] = useState('');
     const [ phone, setPhone ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ address, setAddress ] = useState('');
 
-    const postNewContact = () => {
-        try {
-            fetch(`https://playground.4geeks.com/contact/agendas/${nameAgenda}/contacts`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    "name": name,
-                    "phone": phone,
-                    "email": email,
-                    "address": address
-                    }),
-                redirect: "follow"
-            })
-        } catch (error) {
-            console.error(error)
-        }
+    const sendInfo = e => {
+        actions.postNewContact(nameAgenda, name, phone, email, address); 
+        e.preventDefault();
     }
-    
+
     return (
         <div className="mt-3">
             <Link to={`/Agenda/${nameAgenda}`}>
@@ -44,7 +33,8 @@ export const CreateContact = () => {
                         placeholder="Enter name"
                         name="name"
                         required
-                        onChange={(e) => setName(e.target.value)}
+                        autoFocus
+                        onChange={e => setName(e.target.value)}
                     />
                 </div>
 
@@ -56,7 +46,7 @@ export const CreateContact = () => {
                         placeholder="Enter phone number"
                         name="phone"
                         required
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={e => setPhone(e.target.value)}
                     />
                 </div>
 
@@ -68,7 +58,7 @@ export const CreateContact = () => {
                         placeholder="Enter email address"
                         name="email"
                         required
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -79,15 +69,17 @@ export const CreateContact = () => {
                         className="form-control"
                         placeholder="Enter address"
                         name="address"
-                        onChange={(e) => setAddress(e.target.value)}
+                        onChange={e => setAddress(e.target.value)}
                     />
                 </div>
 
                 <div className="text-center">
-                    <button type="submit" className="btn btn-primary" onClick={postNewContact}>
+                    <button type="submit" className="btn btn-primary" onClick={sendInfo}>
                         Add Contact
                     </button>
                 </div>
+                {store.showError && <div className="message-error text-danger">{store.messageError}</div>}
+                {store.showSuccessful && <div className="message-successful">{store.messageSuccessful}</div>}
             </form>
         </div>
     )
