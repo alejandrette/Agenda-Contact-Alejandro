@@ -15,6 +15,26 @@ export const EditContact = () => {
     const [ email, setEmail ] = useState('');
     const [ address, setAddress ] = useState('');
 
+    const [ filtros, setFiltros ] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://playground.4geeks.com/contact/agendas/${nameAgenda}`)
+            .then(resp => resp.json())
+            .then(data => setFiltros(data.contacts))
+    }, [nameAgenda])
+
+    const newFiltros = filtros.filter(filtro => filtro.id == idContact)[0] || [];
+    
+    console.log('filtros', filtros);
+    console.log('New filtros', newFiltros);
+    
+    useEffect(() => {
+        setName(newFiltros.name || '');
+        setPhone(newFiltros.phone || '');
+        setEmail(newFiltros.email || '');
+        setAddress(newFiltros.address || '');
+    }, [newFiltros]);
+
     return(
         <div className="mt-3">
             <Link to={`/Agenda/${nameAgenda}`}>
@@ -31,6 +51,7 @@ export const EditContact = () => {
                         name="name"
                         required
                         autoFocus
+                        value={name}
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
@@ -43,6 +64,7 @@ export const EditContact = () => {
                         placeholder="Enter phone number"
                         name="phone"
                         required
+                        value={phone}
                         onChange={e => setPhone(e.target.value)}
                     />
                 </div>
@@ -55,6 +77,7 @@ export const EditContact = () => {
                         placeholder="Enter email address"
                         name="email"
                         required
+                        value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
@@ -67,6 +90,7 @@ export const EditContact = () => {
                         placeholder="Enter address"
                         name="address"
                         required
+                        value={address}
                         onChange={e => setAddress(e.target.value)}
                     />
                 </div>
