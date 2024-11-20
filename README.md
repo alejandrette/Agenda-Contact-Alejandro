@@ -1,103 +1,86 @@
-# WebApp boilerplate with React JS
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
+# 📇 Agenda Contact
+Agenda Contact es una aplicación interactiva desarrollada con React que permite a los usuarios gestionar una agenda de contactos. La aplicación utiliza variables globales manejadas con Context para almacenar y gestionar los datos, y permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre los contactos.
 
-<p align="center">
-<a href="https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b"><img src="https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/img/how-to.png?raw=true" /></a>
-</p>
+Este proyecto utiliza React Router para manejar las rutas y se conecta a una API para mantener la persistencia de los datos. Es una solución ideal para aprender y practicar la gestión de estado global y las operaciones con APIs en aplicaciones React.
 
+# 🌟 Características
+1. Gestión de Contactos:
+	- Añadir nuevos contactos con nombre, dirección, correo electrónico y teléfono.
+	- Editar los datos de contactos existentes.
+	- Eliminar contactos de la lista.
+2. Estado Global: Uso del patrón Context API para gestionar los datos de los contactos de manera eficiente.
+3. Persistencia de Datos: Los contactos se almacenan en una API para mantener los datos entre sesiones.
+4. Rutas Dinámicas: Uso de React Router para una navegación fluida entre las diferentes secciones de la aplicación.
+5. Diseño Responsivo: Interfaz diseñada para adaptarse a diferentes dispositivos.
 
-### Requirements:
-- Make sure you are using node version 10
+# 🛠️ Tecnologías Utilizadas
+- **React**: Biblioteca principal para construir la interfaz de usuario.
+- **React Router**: Manejo de rutas dentro de la aplicación.
+- **Context API**: Gestión de estado global para los datos de los contactos.
+- **Bootstrap**: Diseño estilizado y responsivo.
+- **Fetch API**: Conexión con una API externa para persistencia de datos.
+- **JSON Placeholder API**: API simulada utilizada para almacenar contactos.
 
-1. Install the packages:
+# 🚀 Instalación
+1. Clona este repositorio en tu máquina local:
 ```
-$ npm install
+git clone https://github.com/4GeeksAcademy/Agenda-Contact-Alejandro.git
 ```
-2. Create a .env file:
+2. Accede al directorio del proyecto:
 ```
-$ cp .env.example .env
+cd Agenda-Contact-Alejandro
 ```
-3. Start coding! and the webpack dev server with live reload, for windows, mac, linux or Gitpod:
-
-```bash
-$ npm run start
+3. Instala las dependencias:
 ```
-
-### Styles
-You can update the `styles/index.css` or create new `.css` files inside `styles/` and import them into your current scss or js files depending on your needs.
-
-### Components
-Add more files into your `./src/js/components` or styles folder as you need them and import them into your current files as needed.
-
-**Note (New changes)**: Components have been converted into functions to support the use of hooks:
-* Instead of a class component, we're using a `const` function.
-* Class `constructor` and `state` have been replaced by `useState()` hooks.
-* `componentDidMount()` was replaced by `useEffect({}, [])` - It runs at mount thanks to the second parameter (`[]`).
-* `Actions` and `Store` still work the same way.
-
-```jsx
-// Previous "Class Oriented"
-export class Demo extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = getState('code here');
-	}
-}
-
-// New "Functional Oriented"
-export const Demo = () => (
-	const [state, setState] = getState('code here'); //using the state (if needed)
-  const { store, actions } = useContext(Context); // using the context (if needed)
-
-);
+npm install
+```
+4. Inicia la aplicación:
+```
+npm start
 ```
 
-💡Note: There is an example using the Context API inside `views/demo.js`;
+# 📚 Uso
+1. Al iniciar la aplicación, verás la lista de contactos existentes (si ya hay datos en la API).
+2. Usa el botón "Add Contact" para añadir un nuevo contacto.
+3. Haz clic en el botón de edición en cualquier contacto para actualizar su información.
+4. Elimina contactos con un solo clic en el botón de borrar.
+5. Los cambios se reflejan de manera inmediata gracias a la conexión con la API.
 
-### Views (Components)
-Add more files into your `./src/js/views` and import them in `./src/js/layout.jsx`.
+# 📁 Estructura del Proyecto
+- /src:
+	- components/: Componentes reutilizables como el formulario y la lista de contactos.
+	- views/: Páginas principales como la lista de contactos y el formulario de edición.
+	- store/: Implementación del Context API para manejar el estado global.
+	- App.js: Componente principal que organiza las rutas y vistas de la aplicación.
+	- index.js: Punto de entrada para React.
 
-### Context
-This boilerplate comes with a centralized general Context API. The file `./src/js/store/flux.js` has a base structure for the store, we encourage you to change it and adapt it to your needs.
+# 🔮 Funcionalidades Futuras
 
-React Context [docs](https://reactjs.org/docs/context.html)
-BreathCode Lesson [view](https://content.breatheco.de/lesson/react-hooks-explained)
+- 🌐 Integración con una base de datos real para mayor persistencia.
+- 📞 Función de búsqueda para localizar contactos rápidamente.
+- 💾 Exportación e importación de contactos en formatos como CSV o JSON.
+- 🔒 Autenticación para gestionar contactos privados.
 
-The `Provider` is already set. You can consume from any component using the useContext hook to get the `store` and `actions` from the Context. Check `/views/demo.js` to see a demo.
+# 🤝 Contribuciones
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar este proyecto:
 
-```jsx
-import { Context } from "../store/appContext";
-const MyComponentSuper = () => {
-  //here you use useContext to get store and actions
-  const { store, actions } = useContext(Context);
-  return <div>{/* you can use your actions or store inside the html */}</div>
-}
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tus cambios:
 ```
-
-## Publish your website!
-
-1. **Vercel:** The FREE recomended hosting provider is [vercel.com](https://vercel.com/), you can deploy in 1 minutes by typing the following 2 commands:
-
-Login (you need to have an account):
-```sh
-$ npm i vercel -g && vercel login
+git checkout -b feature/nueva-funcionalidad
 ```
-Deploy:
-```sh
-$ vercel --prod
+3. Realiza tus cambios y haz commit:
 ```
-✎ Note: If you don't have an account just go to vercel.com, create a account and come back here.
-
-![Vercel example procedure to deploy](https://github.com/4GeeksAcademy/react-hello-webapp/blob/4b530ba091a981d3916cc6e960e370decaf2e234/docs/deploy.png?raw=true)
-
-2. **Github Pages:** This boilerplate is 100% compatible with the free github pages hosting.
-To publish your website you need to push your code to your github repository and run the following command after:
-```sh
-$ npm run deploy
+git commit -m "Descripción de tus cambios"
 ```
-Note: You will need to [configure github pages for the branch gh-pages](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#enabling-github-pages-to-publish-your-site-from-master-or-gh-pages)
+4. Sube tus cambios a tu repositorio:
+```
+git push origin feature/nueva-funcionalidad
+```
+5. Abre un Pull Request en el repositorio original.
 
-## Contributors
+# 👤 Autor
+Este proyecto fue desarrollado por @alejandrette y forma parte de los ejercicios de aprendizaje en 4Geeks Academy. Si tienes preguntas o sugerencias, no dudes en contactarme.
 
-This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
+# 📜 Licencia
+Este proyecto está bajo la licencia MIT. Puedes usarlo, modificarlo y distribuirlo libremente.
